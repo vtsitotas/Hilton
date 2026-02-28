@@ -4,9 +4,9 @@
 :root {
   --red:        #C0392B;
   --red-dark:   #a93226;
-  --white:      #FFFFFF;
-  --gray-soft:  #F5F5F5;
-  --cream:      #FDF6EE;
+  --white:      #FFFBF5;
+  --gray-soft:  #F5EDE0;
+  --cream:      #FBF0E4;
   --gold:       #C8A042;
   --gold-light: #e8c870;
   --dark:       #1C0F0A;
@@ -451,6 +451,65 @@ h1, h2 { font-family: 'Playfair Display', serif; }
 @media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .gallery { grid-template-columns: 1fr; } }
 
+/* Center lone last image in 3-col layout */
+.gallery__item:last-child:nth-child(3n+1) { grid-column: 2; }
+
+/* Center lone last image in 2-col layout */
+@media (max-width: 900px) {
+  .gallery__item:last-child:nth-child(3n+1) { grid-column: auto; }
+  .gallery__item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    margin-inline: auto;
+  }
+}
+@media (max-width: 600px) {
+  .gallery__item:last-child:nth-child(odd) {
+    grid-column: auto;
+    max-width: 100%;
+    margin-inline: 0;
+  }
+}
+
+/* ── Custom cakes CTA ────────────────────────── */
+.custom-cta {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2.5rem 2rem;
+  background: var(--cream);
+  border-radius: var(--radius);
+  border: 1px solid rgba(200,160,66,0.25);
+}
+.custom-cta__text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #5a3a20;
+  margin-bottom: 1.4rem;
+}
+.custom-cta__btn {
+  display: inline-block;
+  padding: 0.9rem 2.4rem;
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  border: 2px solid var(--red);
+  transition: background 0.3s, color 0.3s, transform 0.25s, box-shadow 0.3s;
+  box-shadow: 0 4px 20px rgba(192,57,43,0.30);
+  text-decoration: none;
+}
+.custom-cta__btn:hover {
+  background: transparent;
+  color: var(--red);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(192,57,43,0.18);
+}
+
 /* ── Reviews section ─────────────────────────── */
 .reviews-section { background: var(--cream); }
 
@@ -690,19 +749,3 @@ h1, h2 { font-family: 'Playfair Display', serif; }
   transform: translateY(-3px) scale(1.06);
 }
 
-/* ── Footer social links ─────────────────────── */
-.footer__social {
-  display: flex;
-  gap: 1.2rem;
-  margin-bottom: 0.4rem;
-}
-.footer__social-link {
-  color: rgba(200,160,66,0.55);
-  transition: color 0.2s, transform 0.2s;
-  display: flex;
-  align-items: center;
-}
-.footer__social-link:hover {
-  color: var(--gold);
-  transform: translateY(-2px);
-}
